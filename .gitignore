@@ -1,0 +1,73 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Manim
+media/
+__pycache__/
+*.log
+
+# Secrets - NEVER commit these!
+.env
+.env.local
+.env.*.local
+*.key
+secrets/
+
+# Generated files
+generated_videos/*.py
+generated_videos/*.mp4
+generated_videos/media/
+
+# Test outputs
+test_outputs/
+
+# Logs
+nohup.out
+server.log
+
+# Frontend
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/*.local
+
+# OS
+Thumbs.db
+
+# Development files
+CLAUDE.md
+DEVELOPMENT_PROMPT.md
+*_example.py
+*_test.py
+test_*.py
