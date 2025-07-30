@@ -27,7 +27,12 @@ app = FastAPI(title="Manim Agent API")
 # CORS configuration for frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Next.js default port
+    allow_origins=[
+        "http://localhost:3000",  # Local development
+        "https://manim-agent.vercel.app",  # Production frontend
+        "https://*.vercel.app",  # All Vercel preview deployments
+        "https://manim-agent-*.vercel.app"  # Pattern for branch deployments
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
