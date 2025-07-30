@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: manim-agent-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false  # Set this in Render dashboard
+      - key: USE_ADVANCED_ORCHESTRATOR
+        value: true
+      - key: PORT
+        value: 8000
+    healthCheckPath: /health
+    disk:
+      name: manim-videos
+      mountPath: /app/generated_videos
+      sizeGB: 10  # Adjust based on your needs

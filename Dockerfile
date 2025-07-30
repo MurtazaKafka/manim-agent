@@ -3,14 +3,27 @@ FROM python:3.12-slim
 
 # Install system dependencies for Manim
 RUN apt-get update && apt-get install -y \
+    # Build essentials for compiling Python packages
+    build-essential \
+    gcc \
+    g++ \
+    # Cairo dependencies
+    libcairo2-dev \
+    pkg-config \
+    python3-dev \
+    # Pango dependencies
+    libpango1.0-dev \
+    # Media dependencies
     ffmpeg \
+    # Git for pip installs
     git \
+    # LaTeX for mathematical rendering
     texlive-latex-base \
     texlive-fonts-recommended \
     texlive-fonts-extra \
     texlive-latex-extra \
-    libcairo2-dev \
-    libpango1.0-dev \
+    # Additional dependencies
+    libffi-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
@@ -18,7 +31,8 @@ WORKDIR /app
 
 # Copy requirements and install Python dependencies
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
 COPY manim_agent/ ./manim_agent/
