@@ -106,6 +106,7 @@ export default function ChatInterface() {
       // Make sure to add an ID to the error message
       const errorMessageId = Date.now().toString()
       addMessage({
+        id: errorMessageId,
         role: 'assistant',
         content: `I encountered an error while generating your video: ${error instanceof Error ? error.message : 'Unknown error'}. Please try again.`,
         status: 'failed'
