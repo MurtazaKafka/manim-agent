@@ -83,13 +83,18 @@ export default function ChatInterface() {
 
       wsRef.current = api.connectWebSocket(session_id, (status) => {
         // Update assistant message with progress
+        // Convert relative video URL to absolute URL
+        const videoUrl = status.video_url 
+          ? `${process.env.NEXT_PUBLIC_API_URL || ''}${status.video_url}`
+          : undefined
+          
         updateMessage(assistantMessageId, {
           content: status.message,
           status: status.status === 'completed' ? 'completed' : 
                   status.status === 'failed' ? 'failed' : 'processing',
           currentAgent: status.current_agent,
           progress: status.progress,
-          videoUrl: status.video_url
+          videoUrl: videoUrl
         })
 
         if (status.status === 'completed' || status.status === 'failed') {
